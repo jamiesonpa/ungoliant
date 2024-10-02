@@ -367,7 +367,7 @@ export default function ScrollableStoryLandingPageComponent() {
     {
       title: "It's not $500,000 AIM-9X missiles either",
       description: "Even more advanced missiles are still not the solution...",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/f22aim9x-lc7GiDGzlBz2WcuLMKPOkpjpptc3l5.png",
+      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/f22aim9x-0NldnqYhx5tu51P1NzT0gew9aCQPOr.png",
       imageAlt: "White outline drawing of an F-22 Raptor fighter jet with an AIM-9X missile"
     },
     {
