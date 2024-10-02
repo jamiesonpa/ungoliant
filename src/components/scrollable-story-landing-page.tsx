@@ -43,7 +43,7 @@ function GalagaLikeAnimation() {
       opacity: number
     }[] = []
 
-    let player = {
+    const player = {
       x: 0,
       y: 0,
       size: 10,
@@ -115,7 +115,7 @@ function GalagaLikeAnimation() {
     const drawMissile = (missile: typeof missiles[0]) => {
       // Draw missile trail
       ctx.beginPath()
-      missile.trail.forEach((point, index) => {
+      missile.trail.forEach((point) => {
         ctx.strokeStyle = `rgba(255, 255, 255, ${point.opacity})`
         ctx.moveTo(point.x, point.y)
         ctx.lineTo(point.x + 2, point.y) // Draw a 2px wide line
@@ -233,7 +233,7 @@ function GalagaLikeAnimation() {
         if (missile.trail.length > 5) {
           missile.trail.pop()
         }
-        missile.trail.forEach((point, i) => {
+        missile.trail.forEach((point) => {
           point.opacity -= 0.15 // Fade out the trail
         })
       }
@@ -264,7 +264,7 @@ function GalagaLikeAnimation() {
         lastParticleGroupTime = timestamp
       }
 
-      particles.forEach((particle, index) => {
+      particles.forEach((particle) => {
         updateParticle(particle)
         drawParticle(particle)
       })
