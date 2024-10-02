@@ -361,19 +361,19 @@ export default function ScrollableStoryLandingPageComponent() {
     {
       title: "The Future of Group 2-4 cUAS is not $1,000,000 AIM-120 missiles",
       description: "Expensive missiles are not the answer...",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/f16-v6KXZPJ6CttTI9u7o6Zc0AhWm93krU.png",
+      imageUrl: "/images/f16.png",
       imageAlt: "White outline drawing of an F-16 fighter jet with an AIM-120 missile on a black background"
     },
     {
       title: "It's not $500,000 AIM-9X missiles either",
       description: "Even more advanced missiles are still not the solution...",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/f22aim9x-0NldnqYhx5tu51P1NzT0gew9aCQPOr.png",
+      imageUrl: "/images/f22.png",
       imageAlt: "White outline drawing of an F-22 Raptor fighter jet with an AIM-9X missile"
     },
     {
       title: "$100,000 Stinger missiles aren't the answer",
       description: "Traditional anti-aircraft weapons are not cost-effective for modern threats...",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stinger-pS6ObJTns4Tj4YjQFUeEA1ln0PttZX.png",
+      imageUrl: "/images/stinger.png",
       imageAlt: "White outline drawing of a Stinger missile launcher on a black background"
     },
     {
