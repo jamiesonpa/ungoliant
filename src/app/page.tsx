@@ -1,9 +1,11 @@
 // src/app/page.tsx
+
+import ScrollableStoryLandingPageComponent from '../components/MyWebsite'; // Importing the default export
+
 export default function Home() {
   return (
-    <main>
-      <h1>Welcome to My Website</h1>
-      <p>This is the homepage using the App Router.</p>
-    </main>
+    <div>
+      <ScrollableStoryLandingPageComponent />
+    </div>
   );
 }

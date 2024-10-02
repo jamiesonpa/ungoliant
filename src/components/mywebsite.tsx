@@ -1,8 +1,10 @@
 "use client"
 
+
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+
 
 function GalagaLikeAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -310,7 +312,7 @@ function GalagaLikeAnimation() {
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
 }
 
-export function ScrollableStoryLandingPageComponent() {
+export default function ScrollableStoryLandingPageComponent() {
   const [currentSection, setCurrentSection] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const [leftCounter, setLeftCounter] = useState(0)
@@ -531,3 +533,4 @@ export function ScrollableStoryLandingPageComponent() {
     </div>
   )
 }
+
