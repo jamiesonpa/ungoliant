@@ -1,10 +1,9 @@
 "use client"
 
-
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-
+import Link from 'next/link'
 
 function GalagaLikeAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -315,7 +314,10 @@ function GalagaLikeAnimation() {
 export default function ScrollableStoryLandingPageComponent() {
   const [currentSection, setCurrentSection] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const [leftCounter, setLeftCounter] = useState(0)
+  const [aim9xcounter, setaim9xcounter] = useState(0)
+  const [aim120counter, setaim120counter] = useState(0)
+  const [stingercounter, setstingercounter] = useState(0)
+  const [ungoliantcounter, setungoliantcounter] = useState(0)
   const [rightCounter, setRightCounter] = useState(0)
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: containerRef })
@@ -339,7 +341,10 @@ export default function ScrollableStoryLandingPageComponent() {
   }, [hasScrolled])
 
   const handleMissileFired = useCallback(() => {
-    setLeftCounter(prev => prev - 500000)
+    setaim9xcounter(prev => prev - 500000)
+    setaim120counter(prev => prev -1000000)
+    setstingercounter(prev => prev -100000)
+    setungoliantcounter(prev => prev -5000)
   }, [])
 
   const handleExplosion = useCallback(() => {
@@ -355,42 +360,71 @@ export default function ScrollableStoryLandingPageComponent() {
     }
   }, [handleMissileFired, handleExplosion])
 
-  const costAsymmetryRatio = leftCounter && rightCounter ? (leftCounter / rightCounter).toFixed(1) : '0.0'
+  const costAsymmetryRatioaim9x = aim9xcounter && rightCounter ? ((rightCounter / aim9xcounter) * 100).toFixed(1) : '0.0';
+  const costAsymmetryRatioaim120 = aim120counter && rightCounter ? ((rightCounter / aim120counter) *100).toFixed(1) : '0.0'
+  const costAsymmetryRatiostinger = stingercounter && rightCounter ? ((rightCounter / stingercounter)*100).toFixed(1) : '0.0'
+  const costAsymmetryRatioungoliant = ungoliantcounter && rightCounter ? ((rightCounter / ungoliantcounter)*100).toFixed(1) : '0.0'
 
   const sections = [
     {
-      title: "The Future of Group 2-4 cUAS is not $1,000,000 AIM-120 missiles",
-      description: "Expensive missiles are not the answer...",
+      title: "Maintaining Air Dominance has Become an Economic Insanity",
+      description: "",
+      links: [
+        {
+          text: "F18 shoots down Houthi one-way attack drone with AIM-120",
+          url: "https://www.twz.com/air/navy-super-hornet-pilot-is-first-u-s-female-aviator-to-shoot-down-an-enemy-aerial-threat"
+        },
+        {
+          text: "F22 shoots down Chinese surveillance baloon using AIM-9X Sidewinder",
+          url: "https://theaviationgeekclub.com/heres-why-the-usaf-f-22-used-the-aim-9x-rather-than-the-gun-to-shoot-down-the-chinese-spy-balloon-and-why-the-sidewinder-dont-need-to-see-something-hot-in-order-to/"
+        },
+        {
+          text: "F-15E Squadron destroys 70 Iranian Drones and Ballistic Missiles using AIM-120s and other ordnance",
+          url: "https://www.newsargus.com/news/local/f-15e-strike-eagles-shoot-down-iranian-drones/article_261eeacf-285a-53c0-8d7d-ec56e7d7a2b1.html"
+        },
+
+      ]
+    },
+    {
+      title: "The Future of Group 2-4 cUAS is not $1,000,000 AIM-120s",
+      description: "",
       imageUrl: "/images/f16.png",
       imageAlt: "White outline drawing of an F-16 fighter jet with an AIM-120 missile on a black background"
     },
     {
-      title: "It's not $500,000 AIM-9X missiles either",
-      description: "Even more advanced missiles are still not the solution...",
+      title: "It's not $500,000 AIM-9Xs",
+      description: "",
       imageUrl: "/images/f22.png",
       imageAlt: "White outline drawing of an F-22 Raptor fighter jet with an AIM-9X missile"
     },
     {
-      title: "$100,000 Stinger missiles aren't the answer",
-      description: "Traditional anti-aircraft weapons are not cost-effective for modern threats...",
-      imageUrl: "/images/stinger.png",
+      title: "And it isnt $100,000 FIM-92 Stingers",
+      description: "",
+      imageUrl: "/images/stinger2.png", 
       imageAlt: "White outline drawing of a Stinger missile launcher on a black background"
     },
     {
-      title: "The Future of Group 2-4 cUAS are Multi-Role Fighters with Cost-Effective Kinetic Effects",
-      description: "Advanced unmanned aerial vehicles are revolutionizing air defense...",
+      title: (<>FPV drone visual acquisition is reactive, short-range, and slow</>),
+      description: "",
+      imageUrl: "/images/drone1.png", 
+      imageAlt: "White outline drawing of a Stinger missile launcher on a black background"
+    },
+    {
+      
+      title:(<>The future is symmetric, <em>cost-effective</em>, air-to-air dominance</>),
+      description: "",
       imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/side_view_website_transparent-HDtUrOCcij4OSLtl533ovL3RI9y1h8.png",
       imageAlt: "Side view of a futuristic unmanned aerial vehicle (UAV)"
     },
     {
-      title: "Attritable, Rapid Deploy cUAS Systems",
-      description: "The next generation of counter-UAS technology combines rapid deployment with cost-effective, disposable units...",
+      title: (<>Offensive counter-air with <em>threat-matched</em> kinetic effects</>),
+      description: "",
       imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/frontal_view_website_transparent-jN5kgepPRDtgUNmIxcufaTzKRuI4wX.png",
       imageAlt: "Frontal view of a sleek, futuristic unmanned aerial vehicle (UAV)"
     },
     {
-      title: "Revolutionizing Air Defense with Advanced UAV Technology",
-      description: "Cutting-edge unmanned aerial vehicles are reshaping the landscape of air defense strategies...",
+      title: (<>Match the cost, minimize the threat, maximize the impact</>),
+      description: "",
       imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/isometric_website_transparent-unfyk3uQLwlYSaRRoNZkVmnRROp72r.png",
       imageAlt: "Isometric view of a futuristic unmanned aerial vehicle (UAV) in flight"
     }
@@ -400,7 +434,7 @@ export default function ScrollableStoryLandingPageComponent() {
 
   return (
     <div ref={containerRef} className="bg-black text-white">
-      <GalagaLikeAnimation />
+      <GalagaLikeAnimation/>
       
       {/* Semi-transparent white layer */}
       <div className="fixed inset-0 bg-white opacity-10 pointer-events-none z-10" />
@@ -430,6 +464,7 @@ export default function ScrollableStoryLandingPageComponent() {
         style={{ height: progressBarHeight }}
       />
 
+
       {/* Left Counter Label */}
       <motion.div
         className="fixed left-[10vw] bottom-[calc(21vh+2rem)] z-50 text-sky-300 text-lg font-semibold text-center"
@@ -438,21 +473,80 @@ export default function ScrollableStoryLandingPageComponent() {
         <span className="underline">Operational Costs (Friendly)</span>
       </motion.div>
 
+
       {/* Left Counter */}
       <motion.div
-        className="fixed left-[10vw] bottom-[21vh] z-50 text-white text-2xl font-bold"
+        className="fixed left-[10vw] bottom-[21vh] z-50 text-white text-xl font-bold"
         style={{ opacity: counterOpacity }}
-      >
-        ${leftCounter.toLocaleString()}
+      > <span>AIM-120: </span>
+        ${aim120counter.toLocaleString()}
+      </motion.div>
+
+      {/* Left Counter */}
+      <motion.div
+        className="fixed left-[10vw] bottom-[19vh] z-50 text-white text-xl font-bold"
+        style={{ opacity: counterOpacity }}
+      > <span>AIM-9X: </span>
+        ${aim9xcounter.toLocaleString()}
+      </motion.div>
+
+      {/* Left Counter */}
+      <motion.div
+        className="fixed left-[10vw] bottom-[17vh] z-50 text-white text-xl font-bold"
+        style={{ opacity: counterOpacity }}
+      > <span>STINGER: </span>
+        ${stingercounter.toLocaleString()}
+      </motion.div>
+
+      {/* Left Counter */}
+      <motion.div
+        className="fixed left-[10vw] bottom-[15vh] z-50 text-white text-xl font-bold"
+        style={{ opacity: counterOpacity }}
+      > <span>UNGOLIANT: </span>
+        ${ungoliantcounter.toLocaleString()}
       </motion.div>
 
       {/* Cost Asymmetry Ratio */}
       <motion.div
-        className="fixed left-1/2 bottom-[calc(21vh-20px)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
+        className="fixed left-1/2 bottom-[calc(21vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
         style={{ opacity: counterOpacity }}
       >
-        <div className="text-lg mb-1 underline">Cost Asymmetry Ratio</div>
-        <div>{costAsymmetryRatio}X</div>
+        <div className="text-lg mb-1 underline">Cost Efficiency</div>
+        <div>
+        <span >AIM-120: </span>
+        {costAsymmetryRatioaim120}%</div>
+      </motion.div>
+
+      {/* Cost Asymmetry Ratio */}
+      <motion.div
+        className="fixed left-1/2 bottom-[calc(19vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
+        style={{ opacity: counterOpacity }}
+      >
+        <div>
+        <span >AIM-9X: </span>
+        {costAsymmetryRatioaim9x}%</div>
+      </motion.div>
+
+      {/* Cost Asymmetry Ratio */}
+      <motion.div
+        className="fixed left-1/2 bottom-[calc(17vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
+        style={{ opacity: counterOpacity }}
+      >
+        
+        <div>
+        <span>STINGER: </span>
+        {costAsymmetryRatiostinger}%</div>
+      </motion.div>
+
+      {/* Cost Asymmetry Ratio */}
+      <motion.div
+        className="fixed left-1/2 bottom-[calc(15vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
+        style={{ opacity: counterOpacity }}
+      >
+        
+        <div>
+        <span>UNGOLIANT: </span>
+        {costAsymmetryRatioungoliant}%</div>
       </motion.div>
 
       {/* Right Counter Label */}
@@ -510,27 +604,43 @@ export default function ScrollableStoryLandingPageComponent() {
             >
               {section.description}
             </motion.p>
-            <motion.div 
-              className="w-full max-w-5xl mx-auto h-[675px] rounded-lg overflow-hidden"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <Image
-                src={section.imageUrl}
-                alt={section.imageAlt}
-                width={1200}
-                height={675}
-                className="object-contain w-full h-full"
-                onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg?height=675&width=1200"
-                }}
-              />
-            </motion.div>
+            {section.imageUrl ? (
+              <motion.div 
+                className="w-full max-w-5xl mx-auto h-[675px] rounded-lg overflow-hidden"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                <Image
+                  src={section.imageUrl}
+                  alt={section.imageAlt}
+                  width={1200}
+                  height={675}
+                  className="object-contain w-full h-full"
+                  onError={(e) => {
+                    e.currentTarget.src = "/placeholder.svg?height=675&width=1200"
+                  }}
+                />
+              </motion.div>
+            ) : section.links ? (
+              <motion.ul
+                className="list-none p-0 space-y-4"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                {section.links.map((link, linkIndex) => (
+                  <li key={linkIndex} className="text-xl text-left">
+                    <Link href={link.url} className="text-blue-400 hover:text-blue-300 transition-colors">
+                      {link.text}
+                    </Link>
+                  </li>
+                ))}
+              </motion.ul>
+            ) : null}
           </div>
         </motion.div>
       ))}
     </div>
   )
 }
-
