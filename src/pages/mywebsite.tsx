@@ -1,5 +1,6 @@
 "use client"
 
+import Head from 'next/head';
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
@@ -312,6 +313,13 @@ function GalagaLikeAnimation() {
 }
 
 export default function ScrollableStoryLandingPageComponent() {
+
+
+
+  const toLowerCase = (text: string) => {
+    return text.replace(/[A-Z]/g, (match) => match.toLowerCase());
+  };
+  
   const [currentSection, setCurrentSection] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const [aim9xcounter, setaim9xcounter] = useState(0)
@@ -367,280 +375,206 @@ export default function ScrollableStoryLandingPageComponent() {
 
   const sections = [
     {
-      title: "Maintaining Air Dominance has Become an Economic Insanity",
+      title: toLowerCase("MAINTAINING AIR DOMINANCE HAS BECOME AN ECONOMIC INSANITY"),
       description: "",
       links: [
         {
-          text: "F18 shoots down Houthi one-way attack drone with AIM-120",
+          text: toLowerCase("F18 SHOOTS DOWN HOUTHI ONE-WAY ATTACK DRONE WITH AIM-120"),
           url: "https://www.twz.com/air/navy-super-hornet-pilot-is-first-u-s-female-aviator-to-shoot-down-an-enemy-aerial-threat"
         },
         {
-          text: "F22 shoots down Chinese surveillance baloon using AIM-9X Sidewinder",
+          text: toLowerCase("F22 SHOOTS DOWN CHINESE SURVEILLANCE BALLOON USING AIM-9X SIDEWINDER"),
           url: "https://theaviationgeekclub.com/heres-why-the-usaf-f-22-used-the-aim-9x-rather-than-the-gun-to-shoot-down-the-chinese-spy-balloon-and-why-the-sidewinder-dont-need-to-see-something-hot-in-order-to/"
         },
         {
-          text: "F-15E Squadron destroys 70 Iranian Drones and Ballistic Missiles using AIM-120s and other ordnance",
+          text: toLowerCase("F-15E SQUADRON DESTROYS 70 IRANIAN DRONES AND BALLISTIC MISSILES USING AIM-120S AND OTHER ORDNANCE"),
           url: "https://www.newsargus.com/news/local/f-15e-strike-eagles-shoot-down-iranian-drones/article_261eeacf-285a-53c0-8d7d-ec56e7d7a2b1.html"
         },
-
       ]
     },
     {
-      title: "The Future of Group 2-4 cUAS is not $1,000,000 AIM-120s",
+      title: toLowerCase("The Future of Group 2-4 cUAS is not $1,000,000 AIM-120s"),
       description: "",
       imageUrl: "/images/f16.png",
-      imageAlt: "White outline drawing of an F-16 fighter jet with an AIM-120 missile on a black background"
+      imageAlt: toLowerCase("White outline drawing of an F-16 fighter jet with an AIM-120 missile on a black background")
     },
     {
-      title: "It's not $500,000 AIM-9Xs",
+      title: toLowerCase("It's not $500,000 AIM-9Xs"),
       description: "",
       imageUrl: "/images/f22.png",
-      imageAlt: "White outline drawing of an F-22 Raptor fighter jet with an AIM-9X missile"
+      imageAlt: toLowerCase("White outline drawing of an F-22 Raptor fighter jet with an AIM-9X missile")
     },
     {
-      title: "And it isnt $100,000 FIM-92 Stingers",
+      title: toLowerCase("And it isn't $100,000 FIM-92 Stingers"),
       description: "",
-      imageUrl: "/images/stinger2.png", 
-      imageAlt: "White outline drawing of a Stinger missile launcher on a black background"
+      imageUrl: "/images/stinger2.png",
+      imageAlt: toLowerCase("White outline drawing of a Stinger missile launcher on a black background")
     },
     {
-      title: (<>FPV drone visual acquisition is reactive, short-range, and slow</>),
+      title: (<>fpv drone visual acquisition is reactive, short-range, and slow</>),
       description: "",
       imageUrl: "/images/drone1.png", 
       imageAlt: "White outline drawing of a Stinger missile launcher on a black background"
     },
     {
       
-      title:(<>The future is symmetric, <em>cost-effective</em>, air-to-air dominance</>),
+      title:(<>the future is symmetric, <em>cost-effective</em>, air-to-air dominance</>),
       description: "",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/side_view_website_transparent-HDtUrOCcij4OSLtl533ovL3RI9y1h8.png",
+      imageUrl: "/images/side_view_website_transparent-1.png",
       imageAlt: "Side view of a futuristic unmanned aerial vehicle (UAV)"
     },
     {
-      title: (<>Offensive counter-air with <em>threat-matched</em> kinetic effects</>),
+      title: (<>offensive counter-air with <em>threat-matched</em> kinetic effects</>),
       description: "",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/frontal_view_website_transparent-jN5kgepPRDtgUNmIxcufaTzKRuI4wX.png",
+      imageUrl: "/images/frontal_view_website_transparent-1.png",
       imageAlt: "Frontal view of a sleek, futuristic unmanned aerial vehicle (UAV)"
     },
     {
-      title: (<>Match the cost, minimize the threat, maximize the impact</>),
+      title: (<>match the cost, minimize the threat, maximize the impact</>),
       description: "",
-      imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/isometric_website_transparent-unfyk3uQLwlYSaRRoNZkVmnRROp72r.png",
+      imageUrl: "/images/isometric_website_transparent-1.png",
       imageAlt: "Isometric view of a futuristic unmanned aerial vehicle (UAV) in flight"
+    },
+    {
+      title: (<>contact us</>),
+      description: "info@ungoliant.ai",
+      imageUrl: "/images/ungoliant_logo_white.png",
+      imageAlt: "The Ungoliant Logo"
     }
   ]
 
   const progressBarHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <div ref={containerRef} className="bg-black text-white">
-      <GalagaLikeAnimation/>
-      
-      {/* Semi-transparent white layer */}
-      <div className="fixed inset-0 bg-white opacity-10 pointer-events-none z-10" />
-      
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex-shrink-0">
-              <a href="#" className="text-white font-bold text-xl hover:text-gray-300 transition-colors">
-                UNGOLIANT
-              </a>
+      <>
+        <Head>
+          {/* Basic favicon */}
+          <link rel="icon" href="/favicon.ico" />
+  
+          {/* Multiple sizes for different devices */}
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  
+          {/* Apple Touch Icon for iOS */}
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+          {/* Manifest for PWA support */}
+          <link rel="manifest" href="/site.webmanifest" />
+  
+          {/* Optional: Customize theme color for mobile browsers */}
+          <meta name="theme-color" content="#ffffff" />
+        </Head>
+  
+        <div ref={containerRef} className="bg-black text-white">
+          <GalagaLikeAnimation />
+  
+          {/* Semi-transparent white layer */}
+          <div className="fixed inset-0 bg-white opacity-10 pointer-events-none z-10" />
+  
+          <nav className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md">
+            <div className="container mx-auto px-4">
+              <div className="flex items-center justify-between h-16">
+                <div className="flex-shrink-0">
+                  {/* Replace "UNGOLIANT" text with an image */}
+                  <a href="#" className="text-white font-bold text-xl hover:text-gray-300 fixed left-[10vw] top-[calc(-2vh+2rem)] transition-colors">
+                    <img src="/images/ungoliant_logo_white.png" alt="Ungoliant Logo" className="h-11 w-auto" />
+                  </a>
+                </div>
+                <div className="flex space-x-4">
+                  <Link href="/contact" className="text-white hover:text-gray-300 transition-colors"></Link>
+                  <a href="#" className="text-white hover:text-gray-300 transition-colors"></a>
+                </div>
+              </div>
             </div>
-            <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">
-                About
-              </a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">
-                Contact
-              </a>
-            </div>
+          </nav>
+  
+          <motion.div
+            className="fixed left-0 top-0 bottom-0 w-1 bg-white z-30"
+            style={{ height: progressBarHeight }}
+          />
+  
+          {/* Left Counter Label */}
+          <motion.div className="fixed left-[10vw] bottom-[calc(21vh+2rem)] z-50 text-sky-300 text-lg font-semibold text-center" style={{ opacity: counterOpacity }}>
+            <span className="underline">operational costs (friendly)</span>
+          </motion.div>
+  
+          {/* Left Counters */}
+          <motion.div className="fixed left-[10vw] bottom-[21vh] z-50 text-white text-xl font-bold" style={{ opacity: counterOpacity }}>
+            <span>aim-120: </span>${aim120counter.toLocaleString()}
+          </motion.div>
+          <motion.div className="fixed left-[10vw] bottom-[19vh] z-50 text-white text-xl font-bold" style={{ opacity: counterOpacity }}>
+            <span>aim-9x: </span>${aim9xcounter.toLocaleString()}
+          </motion.div>
+          <motion.div className="fixed left-[10vw] bottom-[17vh] z-50 text-white text-xl font-bold" style={{ opacity: counterOpacity }}>
+            <span>stinger: </span>${stingercounter.toLocaleString()}
+          </motion.div>
+          <motion.div className="fixed left-[10vw] bottom-[15vh] z-50 text-white text-xl font-bold" style={{ opacity: counterOpacity }}>
+            <span>ungoliant: </span>${ungoliantcounter.toLocaleString()}
+          </motion.div>
+  
+          {/* Cost Asymmetry Ratios */}
+          <motion.div className="fixed left-1/2 bottom-[calc(21vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center" style={{ opacity: counterOpacity }}>
+            <div className="text-lg mb-1 underline">cost efficiency</div>
+            <div><span>aim-120: </span>{costAsymmetryRatioaim120}%</div>
+          </motion.div>
+          <motion.div className="fixed left-1/2 bottom-[calc(19vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center" style={{ opacity: counterOpacity }}>
+            <div><span>aim-9x: </span>{costAsymmetryRatioaim9x}%</div>
+          </motion.div>
+          <motion.div className="fixed left-1/2 bottom-[calc(17vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center" style={{ opacity: counterOpacity }}>
+            <div><span>stinger: </span>{costAsymmetryRatiostinger}%</div>
+          </motion.div>
+          <motion.div className="fixed left-1/2 bottom-[calc(15vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center" style={{ opacity: counterOpacity }}>
+            <div><span>ungoliant: </span>{costAsymmetryRatioungoliant}%</div>
+          </motion.div>
+  
+          {/* Right Counter Label */}
+          <motion.div className="fixed right-[10vw] bottom-[calc(21vh+2rem)] z-50 text-red-300 text-lg font-semibold text-center" style={{ opacity: counterOpacity }}>
+            <span className="underline">operational costs (opfor)</span>
+          </motion.div>
+  
+          {/* Right Counter */}
+          <motion.div className="fixed right-[10vw] bottom-[21vh] z-50 text-white text-2xl font-bold" style={{ opacity: counterOpacity }}>
+            ${rightCounter.toLocaleString()}
+          </motion.div>
+  
+          {/* Main Section */}
+          <div className="h-screen flex items-start justify-center pt-[21vh]">
+            <AnimatePresence>
+              <motion.h1 key="title" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 5 }} className="text-4xl font-bold text-center">
+                a new microcosm in air-to-air dominance
+              </motion.h1>
+            </AnimatePresence>
           </div>
+  
+          {/* Sections */}
+          {sections.map((section, index) => (
+            <motion.div key={index} className="min-h-[200vh] flex items-center justify-center relative z-20" initial={{ opacity: 0 }} animate={{ opacity: hasScrolled && currentSection === index ? 1 : 0 }} transition={{ duration: 0.5 }}>
+              <div className="text-center max-w-6xl mx-auto px-4 sticky top-1/2 transform -translate-y-1/2">
+                <motion.h2 className="mb-4 text-4xl font-bold" initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.8 }}>
+                  {section.title}
+                </motion.h2>
+                <motion.p className="text-xl mb-8" initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4, duration: 0.8 }}>
+                  {section.description}
+                </motion.p>
+                {section.imageUrl ? (
+                  <motion.div className="w-full max-w-5xl mx-auto h-[675px] rounded-lg overflow-hidden" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }}>
+                    <Image src={section.imageUrl} alt={section.imageAlt} width={1200} height={675} className="object-contain w-full h-full" onError={(e) => { e.currentTarget.src = "/placeholder.svg?height=675&width=1200"; }} />
+                  </motion.div>
+                ) : section.links ? (
+                  <motion.ul className="list-none p-0 space-y-4" initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }}>
+                    {section.links.map((link, linkIndex) => (
+                      <li key={linkIndex} className="text-xl text-left">
+                        <Link href={link.url} className="text-blue-400 hover:text-blue-300 transition-colors">
+                          {link.text}
+                        </Link>
+                      </li>
+                    ))}
+                  </motion.ul>
+                ) : null}
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </nav>
-
-      <motion.div
-        className="fixed left-0 top-0 bottom-0 w-1 bg-white z-30"
-        style={{ height: progressBarHeight }}
-      />
-
-
-      {/* Left Counter Label */}
-      <motion.div
-        className="fixed left-[10vw] bottom-[calc(21vh+2rem)] z-50 text-sky-300 text-lg font-semibold text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        <span className="underline">Operational Costs (Friendly)</span>
-      </motion.div>
-
-
-      {/* Left Counter */}
-      <motion.div
-        className="fixed left-[10vw] bottom-[21vh] z-50 text-white text-xl font-bold"
-        style={{ opacity: counterOpacity }}
-      > <span>AIM-120: </span>
-        ${aim120counter.toLocaleString()}
-      </motion.div>
-
-      {/* Left Counter */}
-      <motion.div
-        className="fixed left-[10vw] bottom-[19vh] z-50 text-white text-xl font-bold"
-        style={{ opacity: counterOpacity }}
-      > <span>AIM-9X: </span>
-        ${aim9xcounter.toLocaleString()}
-      </motion.div>
-
-      {/* Left Counter */}
-      <motion.div
-        className="fixed left-[10vw] bottom-[17vh] z-50 text-white text-xl font-bold"
-        style={{ opacity: counterOpacity }}
-      > <span>STINGER: </span>
-        ${stingercounter.toLocaleString()}
-      </motion.div>
-
-      {/* Left Counter */}
-      <motion.div
-        className="fixed left-[10vw] bottom-[15vh] z-50 text-white text-xl font-bold"
-        style={{ opacity: counterOpacity }}
-      > <span>UNGOLIANT: </span>
-        ${ungoliantcounter.toLocaleString()}
-      </motion.div>
-
-      {/* Cost Asymmetry Ratio */}
-      <motion.div
-        className="fixed left-1/2 bottom-[calc(21vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        <div className="text-lg mb-1 underline">Cost Efficiency</div>
-        <div>
-        <span >AIM-120: </span>
-        {costAsymmetryRatioaim120}%</div>
-      </motion.div>
-
-      {/* Cost Asymmetry Ratio */}
-      <motion.div
-        className="fixed left-1/2 bottom-[calc(19vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        <div>
-        <span >AIM-9X: </span>
-        {costAsymmetryRatioaim9x}%</div>
-      </motion.div>
-
-      {/* Cost Asymmetry Ratio */}
-      <motion.div
-        className="fixed left-1/2 bottom-[calc(17vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        
-        <div>
-        <span>STINGER: </span>
-        {costAsymmetryRatiostinger}%</div>
-      </motion.div>
-
-      {/* Cost Asymmetry Ratio */}
-      <motion.div
-        className="fixed left-1/2 bottom-[calc(15vh)] z-50 text-white text-xl font-bold transform -translate-x-1/2 text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        
-        <div>
-        <span>UNGOLIANT: </span>
-        {costAsymmetryRatioungoliant}%</div>
-      </motion.div>
-
-      {/* Right Counter Label */}
-      <motion.div
-        className="fixed right-[10vw] bottom-[calc(21vh+2rem)] z-50 text-red-300 text-lg font-semibold text-center"
-        style={{ opacity: counterOpacity }}
-      >
-        <span className="underline">Operational Costs (OPFOR)</span>
-      </motion.div>
-
-      {/* Right Counter */}
-      <motion.div
-        className="fixed right-[10vw] bottom-[21vh] z-50 text-white text-2xl font-bold"
-        style={{ opacity: counterOpacity }}
-      >
-        ${rightCounter.toLocaleString()}
-      </motion.div>
-
-      <div className="h-screen flex items-start justify-center pt-[21vh]">
-        <AnimatePresence>
-          <motion.h1
-            key="title"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 5 }}
-            className="text-4xl font-bold text-center"
-          >
-            A New Microcosm in Air-to-Air Dominance
-          </motion.h1>
-        </AnimatePresence>
-      </div>
-
-      {sections.map((section, index) => (
-        <motion.div
-          key={index}
-          className="min-h-[200vh] flex items-center justify-center relative z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: hasScrolled && currentSection === index ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="text-center max-w-6xl mx-auto px-4 sticky top-1/2 transform -translate-y-1/2">
-            <motion.h2 
-              className="mb-4 text-4xl font-bold"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              {section.title}
-            </motion.h2>
-            <motion.p 
-              className="text-xl mb-8"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              {section.description}
-            </motion.p>
-            {section.imageUrl ? (
-              <motion.div 
-                className="w-full max-w-5xl mx-auto h-[675px] rounded-lg overflow-hidden"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                <Image
-                  src={section.imageUrl}
-                  alt={section.imageAlt}
-                  width={1200}
-                  height={675}
-                  className="object-contain w-full h-full"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg?height=675&width=1200"
-                  }}
-                />
-              </motion.div>
-            ) : section.links ? (
-              <motion.ul
-                className="list-none p-0 space-y-4"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex} className="text-xl text-left">
-                    <Link href={link.url} className="text-blue-400 hover:text-blue-300 transition-colors">
-                      {link.text}
-                    </Link>
-                  </li>
-                ))}
-              </motion.ul>
-            ) : null}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  )
-}
+      </>
+    );
+  }
